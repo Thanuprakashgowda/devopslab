@@ -1,0 +1,16 @@
+plugins {
+    id 'base'
+}
+
+task copySite(type: Copy) {
+    from 'src/main/webapp'
+    into "$buildDir/site"
+}
+
+task prepareDocs(type: Copy) {
+    dependsOn copySite
+    from "$buildDir/site"
+    into "$projectDir/docs"
+}
+
+build.dependsOn copySite
